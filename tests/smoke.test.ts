@@ -1,6 +1,6 @@
-import { Request } from 'express'
 import test from 'tape'
 
+import { Request } from 'express'
 import { RoutesArchive } from '../src/RoutesArchive'
 
 const root = new RoutesArchive()

@@ -1,7 +1,8 @@
-import { Request } from 'express'
 import nodeUrl from 'url'
 
+import { Request } from 'express'
 import { RouteNotRegistered } from './RouteNotRegistered'
+export { RouteNotRegistered }
 
 export type PathGenerator =
   | string
