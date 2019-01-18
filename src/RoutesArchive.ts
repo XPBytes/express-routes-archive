@@ -3,7 +3,9 @@ import nodeUrl from 'url'
 
 import { RouteNotRegistered } from './RouteNotRegistered'
 
-export type PathGenerator = string | ((mountedAt: string, ...args: any[]) => string)
+export type PathGenerator =
+  | string
+  | ((mountedAt: string, ...args: any[]) => string)
 type RouteGenerator = (args: any[]) => string
 
 export interface RoutesArchiveBase {
@@ -14,7 +16,7 @@ export interface RoutesArchiveBase {
 const READ_ONLY_ROUTES = {}
 const EMPTY_BASE: RoutesArchiveBase = {
   mountedAt: undefined,
-  routes: READ_ONLY_ROUTES,
+  routes: READ_ONLY_ROUTES
 }
 
 export class RoutesArchive implements RoutesArchiveBase {
@@ -35,7 +37,7 @@ export class RoutesArchive implements RoutesArchiveBase {
     mountedAt?: string,
     base: RoutesArchiveBase = EMPTY_BASE,
     ssl: string | boolean | undefined = process.env.SSL_ENABLED,
-    serverUrl: string | undefined = process.env.SERVER_URL,
+    serverUrl: string | undefined = process.env.SERVER_URL
   ) {
     this.mountedAt = [base.mountedAt, mountedAt].filter(Boolean).join('')
     this.routes = base.routes === READ_ONLY_ROUTES ? {} : base.routes
@@ -55,11 +57,7 @@ export class RoutesArchive implements RoutesArchiveBase {
    */
   public register(route: string, generatePath: PathGenerator) {
     this.routes[route] = (args: any[]) => {
-      return this.callOrReturn(
-        generatePath,
-        this.mountedAt,
-        ...args,
-      ).toString()
+      return this.callOrReturn(generatePath, this.mountedAt, ...args).toString()
     }
   }
 
@@ -78,7 +76,7 @@ export class RoutesArchive implements RoutesArchiveBase {
       nodeUrl.format({
         hostname: req.hostname,
         port: req.socket.localPort,
-        protocol: this.ssl ? 'https' : 'http',
+        protocol: this.ssl ? 'https' : 'http'
       })
 
     return new nodeUrl.URL(`.${this.path(route, ...args)}`, baseUrl)
@@ -99,10 +97,7 @@ export class RoutesArchive implements RoutesArchiveBase {
 
   private assertExists(route: string) {
     if (!this.routes[route]) {
-      throw new RouteNotRegistered(
-        route,
-        Object.keys(this.routes),
-      )
+      throw new RouteNotRegistered(route, Object.keys(this.routes))
     }
   }
 

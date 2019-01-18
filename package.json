@@ -1,6 +1,6 @@
 {
   "name": "@xpbytes/express-routes-archive",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Utility class to register routes and dynamically generate their URL or path from anywhere in the express app",
   "main": "dist/RoutesArchive.js",
   "repository": "https://github.com/XPBytes/express-routes-archive",
@@ -29,6 +29,7 @@
     "tape": "^4.9.2",
     "ts-node": "^7.0.1",
     "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.17.0",
     "typescript": "^3.2.2"
   },
   "dependencies": {},
@@ -40,11 +41,11 @@
   "lint-staged": {
     "linters": {
       "*.{json,css,md}": [
-        "prettier --single-quote --no-semi --write",
+        "prettier --single-quote --no-semi --arrow-parens always --write",
         "git add"
       ],
-      "*{app,__{tests,mocks}__,test}/**/*.{mjs,js}": [
-        "prettier --single-quote --no-semi --write",
+      "*{src,app,__{tests,mocks}__,test,tests}/**/*.{mjs,js,jsx,ts,tsx}": [
+        "prettier --single-quote --no-semi --arrow-parens always --write",
         "git add"
       ]
     }
