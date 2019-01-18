@@ -1,4 +1,4 @@
-import nodeUrl from 'url'
+import * as nodeUrl from 'url'
 
 import { Request } from 'express'
 import { RouteNotRegistered } from './RouteNotRegistered'
