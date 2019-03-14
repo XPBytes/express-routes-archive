@@ -1,8 +1,6 @@
 # Express Routes Archive
 
-[![Build Status](https://travis-ci.com/XPBytes/express-routes-archive.svg?branch=master)](https://travis-ci.com/XPBytes/express-routes-archive)
-
-[![NPM Package Version](https://badge.fury.io/js/@xpbytes%2Fexpress-routes-archive.svg)](https://npmjs.org/package/@xpbytes/express-routes-archive)
+[![Build Status](https://travis-ci.com/XPBytes/express-routes-archive.svg?branch=master)](https://travis-ci.com/XPBytes/express-routes-archive) [![NPM Package Version](https://badge.fury.io/js/@xpbytes%2Fexpress-routes-archive.svg)](https://npmjs.org/package/@xpbytes/express-routes-archive) [![Maintainability](https://api.codeclimate.com/v1/badges/767c9b87de0dd450dfa7/maintainability)](https://codeclimate.com/github/XPBytes/express-routes-archive/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/767c9b87de0dd450dfa7/test_coverage)](https://codeclimate.com/github/XPBytes/express-routes-archive/test_coverage)
 
 Utility class to register routes and dynamically generate their URL or path from
 anywhere in the express app.
