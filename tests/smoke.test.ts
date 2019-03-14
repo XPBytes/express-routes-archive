@@ -1,7 +1,7 @@
 import test from 'tape'
 
 import { Request } from 'express'
-import { RoutesArchive } from '../src/RoutesArchive'
+import { RouteNotRegistered, RoutesArchive } from '../src/RoutesArchive'
 
 const root = new RoutesArchive()
 root.register('foo', '/test')
@@ -9,6 +9,7 @@ root.register(
   'bar',
   (mountedAt: string, arg: any) => `${mountedAt}/test?bar=${arg}`
 )
+
 const up = new RoutesArchive('/level', root)
 up.register('level', '/two')
 up.register('penthouse', (mountedAt: string) => `${mountedAt}/over-9000`)
@@ -43,6 +44,7 @@ test('it generates url', (t) => {
     hostname: 'test.xpbytes.com',
     socket: { port: 80 }
   } as unknown) as Request
+
   t.equals(
     root.url('level', fakeRequest).toString(),
     'http://test.xpbytes.com/level/two'
@@ -55,8 +57,10 @@ test('it can generate https urls (via constructor)', (t) => {
     hostname: 'test.xpbytes.com',
     socket: { port: 443 }
   } as unknown) as Request
+
   const secure = new RoutesArchive(undefined, undefined, true)
   secure.register('lock', '/locked')
+
   t.equals(
     secure.url('lock', fakeRequest).toString(),
     'https://test.xpbytes.com/locked'
@@ -70,8 +74,10 @@ test('it can generate https urls (via env)', (t) => {
     hostname: 'test.xpbytes.com',
     socket: { port: 443 }
   } as unknown) as Request
+
   const secure = new RoutesArchive()
   secure.register('lock', '/locked')
+
   t.equals(
     secure.url('lock', fakeRequest).toString(),
     'https://test.xpbytes.com/locked'
@@ -84,6 +90,7 @@ test('it can have a hostname (via constructor)', (t) => {
     hostname: 'nope.xpbytes.com',
     socket: { port: 443 }
   } as unknown) as Request
+
   const secure = new RoutesArchive(
     undefined,
     undefined,
@@ -91,6 +98,7 @@ test('it can have a hostname (via constructor)', (t) => {
     'https://alternate.xpbytes.com/mount-path/'
   )
   secure.register('lock', '/locked')
+
   t.equals(
     secure.url('lock', fakeRequest).toString(),
     'https://alternate.xpbytes.com/mount-path/locked'
@@ -105,11 +113,25 @@ test('it can have a hostname (via env)', (t) => {
     hostname: 'nope.xpbytes.com',
     socket: { port: 443 }
   } as unknown) as Request
+
   const secure = new RoutesArchive()
   secure.register('lock', '/locked')
+
   t.equals(
     secure.url('lock', fakeRequest).toString(),
     'https://alternate.xpbytes.com/mount-path/locked'
+  )
+  t.end()
+})
+
+test('it throws when a route does not exist', (t) => {
+  const archive = new RoutesArchive()
+  t.throws(
+    () => {
+      archive.path('__nope__')
+    },
+    RouteNotRegistered,
+    'Should have thrown a RouteNotRegistered error'
   )
   t.end()
 })

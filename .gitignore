@@ -75,6 +75,10 @@ typings/
 # FuseBox cache
 .fusebox/
 
-dist
+# Coverage output
+.nyc_output
+coverage
 
+# Build output
+dist
 tests/dist
