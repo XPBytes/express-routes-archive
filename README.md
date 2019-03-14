@@ -7,9 +7,13 @@
 Utility class to register routes and dynamically generate their URL or path from
 anywhere in the express app.
 
+## Installation
+
 ```bash
 yarn add @xpbytes/express-routes-archive
 ```
+
+## Usage
 
 ```typescript
 import { RoutesArchive } from '@xpbytes/express-routes-archive'
