@@ -1,9 +1,8 @@
 # Express Routes Archive
 
-[![Build Status](https://travis-ci.com/XPBytes/express-routes-archive.svg?branch=master)](https://travis-ci.com/XPBytes/express-routes-archive) [![NPM Package Version](https://badge.fury.io/js/@xpbytes%2Fexpress-routes-archive.svg)](https://npmjs.org/package/@xpbytes/express-routes-archive) [![Maintainability](https://api.codeclimate.com/v1/badges/767c9b87de0dd450dfa7/maintainability)](https://codeclimate.com/github/XPBytes/express-routes-archive/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/767c9b87de0dd450dfa7/test_coverage)](https://codeclimate.com/github/XPBytes/express-routes-archive/test_coverage)
+[![NPM Package Version](https://badge.fury.io/js/@xpbytes%2Fexpress-routes-archive.svg)](https://npmjs.org/package/@xpbytes/express-routes-archive) [![Maintainability](https://api.codeclimate.com/v1/badges/767c9b87de0dd450dfa7/maintainability)](https://codeclimate.com/github/XPBytes/express-routes-archive/maintainability)
 
-Utility class to register routes and dynamically generate their URL or path from
-anywhere in the express app.
+Utility class to register routes and dynamically generate their URL or path from anywhere in the express app.
 
 ## Installation
 
@@ -36,8 +35,7 @@ root.path('bar', 'my-arg')
 // => /test?bar=my-arg
 ```
 
-When you have a sub-router / controller, create a new `RoutesArchive`, passing
-in the original and the mount path:
+When you have a sub-router / controller, create a new `RoutesArchive`, passing in the original and the mount path:
 
 ```typescript
 const up = new RoutesArchive('/level', root)
