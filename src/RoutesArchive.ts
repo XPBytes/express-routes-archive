@@ -6,8 +6,8 @@ export { RouteNotRegistered }
 
 export type PathGenerator =
   | string
-  | ((mountedAt: string, ...args: any[]) => string)
-type RouteGenerator = (args: any[]) => string
+  | ((mountedAt: string, ...args: unknown[]) => string)
+type RouteGenerator = (args: unknown[]) => string
 
 export interface RoutesArchiveBase {
   mountedAt: undefined | string
@@ -56,8 +56,8 @@ export class RoutesArchive implements RoutesArchiveBase {
    *
    * @memberof RoutesArchive
    */
-  public register(route: string, generatePath: PathGenerator) {
-    this.routes[route] = (args: any[]) => {
+  public register(route: string, generatePath: PathGenerator): void {
+    this.routes[route] = (args: unknown[]) => {
       return this.callOrReturn(generatePath, this.mountedAt, ...args).toString()
     }
   }
@@ -71,7 +71,7 @@ export class RoutesArchive implements RoutesArchiveBase {
    * @returns {nodeUrl.URL} the url
    * @memberof RoutesArchive
    */
-  public url(route: string, req: Request, ...args: any[]): nodeUrl.URL {
+  public url(route: string, req: Request, ...args: unknown[]): nodeUrl.URL {
     const baseUrl =
       this.serverUrl ||
       nodeUrl.format({
@@ -91,7 +91,7 @@ export class RoutesArchive implements RoutesArchiveBase {
    * @returns {string} the path
    * @memberof RoutesArchive
    */
-  public path(route: string, ...args: any[]): string {
+  public path(route: string, ...args: unknown[]): string {
     this.assertExists(route)
     return this.routes[route](args)
   }
@@ -102,7 +102,7 @@ export class RoutesArchive implements RoutesArchiveBase {
     }
   }
 
-  private callOrReturn(opt: PathGenerator, mountedAt: string, ...args: any[]) {
+  private callOrReturn(opt: PathGenerator, mountedAt: string, ...args: unknown[]) {
     if (typeof opt === 'string' || typeof opt === 'object') {
       return mountedAt + opt
     }

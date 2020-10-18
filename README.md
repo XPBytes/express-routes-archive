@@ -11,6 +11,12 @@ anywhere in the express app.
 yarn add @xpbytes/express-routes-archive
 ```
 
+It has the following peer dependencies:
+
+```bash
+yarn add @types/express @types/express-serve-static-core @types/node -D
+```
+
 ## Usage
 
 ```typescript
