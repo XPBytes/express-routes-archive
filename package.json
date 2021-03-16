@@ -28,7 +28,7 @@
     "@types/node": "^14.11.10"
   },
   "devDependencies": {
-    "@types/express": "^4.17.8",
+    "@types/express": "^4.17.11",
     "@types/express-serve-static-core": "^4.17.19",
     "@types/node": "^14.14.34",
     "@types/tape": "^4.13.0",
