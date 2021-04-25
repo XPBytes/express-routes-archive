@@ -35,7 +35,7 @@
     "@typescript-eslint/eslint-plugin": "^4.21.0",
     "@typescript-eslint/parser": "^4.21.0",
     "eslint": "^7.25.0",
-    "eslint-config-prettier": "^7.2.0",
+    "eslint-config-prettier": "^8.2.0",
     "prettier": "^2.2.1",
     "rimraf": "^3.0.2",
     "tape": "^5.2.2",
